@@ -1,6 +1,10 @@
 {
     "name": "http-api-assignment",
     "version": "1.0.0",
+    "engines": {
+        "node": "10.9.0",
+        "npm": "6.2.0"
+    },
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -19,7 +23,7 @@
     },
     "homepage": "https://github.com/dezmoji/http-api-assignment#readme",
     "devDependencies": {
-        "eslint": "^5.5.0",
+        "eslint": "^5.6.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-plugin-import": "^2.14.0"
     }
