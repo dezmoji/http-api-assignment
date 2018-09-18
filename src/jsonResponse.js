@@ -5,16 +5,14 @@ const respond = (request, response, status, type, object) => {
 };
 
 const success = (request, response, type) => {
-  // create a response object with a header and message
+  // create a response object with a id and message
   const responseObj = {
-    header: 'Success',
     message: 'This is a succesful response',
   };
 
   // if the type is XML, create a XML response
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 200, type, responseXML);
@@ -29,13 +27,11 @@ const badRequest = (request, response, type, params) => {
   // if parameters are met
   if (params === 'valid=true') {
     const responseObj = {
-      header: 'Bad Request',
-      message: 'Request true',
+      message: 'You have met the requirements.',
     };
 
     if (type[0] === 'text/xml') {
       let responseXML = '<response>';
-      responseXML = `${responseXML} <header>${responseObj.header}</header>`;
       responseXML = `${responseXML} <message>${responseObj.message}</message>`;
       responseXML = `${responseXML} </response>`;
       return respond(request, response, 200, type, responseXML);
@@ -47,12 +43,12 @@ const badRequest = (request, response, type, params) => {
 
   // if not
   const responseObj = {
-    header: 'Bad Request',
+    id: 'badRequest',
     message: 'Missing valid query parameter set to true.',
   };
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
+    responseXML = `${responseXML} <id>${responseObj.id}</id>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 400, type, responseXML);
@@ -66,13 +62,11 @@ const unauthorized = (request, response, type, params) => {
   // if parameters are met
   if (params === 'loggedIn=yes') {
     const responseObj = {
-      header: 'Unauthorized',
-      message: 'Request true',
+      message: 'You have access to view this page.',
     };
 
     if (type[0] === 'text/xml') {
       let responseXML = '<response>';
-      responseXML = `${responseXML} <header>${responseObj.header}</header>`;
       responseXML = `${responseXML} <message>${responseObj.message}</message>`;
       responseXML = `${responseXML} </response>`;
       return respond(request, response, 200, type, responseXML);
@@ -84,12 +78,12 @@ const unauthorized = (request, response, type, params) => {
 
   // if not
   const responseObj = {
-    header: 'Unauthorized',
-    message: 'Missing loggedIn query parameter set to true.',
+    id: 'unauthorized',
+    message: 'Missing loggedIn query parameter set to yes.',
   };
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
+    responseXML = `${responseXML} <id>${responseObj.id}</id>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 401, type, responseXML);
@@ -101,13 +95,13 @@ const unauthorized = (request, response, type, params) => {
 
 const forbidden = (request, response, type) => {
   const responseObj = {
-    header: 'Forbidden',
+    id: 'forbidden',
     message: 'You do not have access to this content.',
   };
 
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
+    responseXML = `${responseXML} <id>${responseObj.id}</id>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 403, type, responseXML);
@@ -119,13 +113,13 @@ const forbidden = (request, response, type) => {
 
 const internal = (request, response, type) => {
   const responseObj = {
-    header: 'Internal Server Error',
+    id: 'internalError',
     message: 'Internal Server Error. Something went wrong.',
   };
 
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
+    responseXML = `${responseXML} <id>${responseObj.id}</id>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 500, type, responseXML);
@@ -137,13 +131,13 @@ const internal = (request, response, type) => {
 
 const notImplemented = (request, response, type) => {
   const responseObj = {
-    header: 'Not Implemented',
+    id: 'notImplemented',
     message: 'A get request for this page has not been implemented yet. Check again later for updated content.',
   };
 
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
+    responseXML = `${responseXML} <id>${responseObj.id}</id>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 501, type, responseXML);
@@ -155,13 +149,13 @@ const notImplemented = (request, response, type) => {
 
 const notFound = (request, response, type) => {
   const responseObj = {
-    header: 'Resource Not Found',
+    id: 'notFound',
     message: 'The page you are looking for was not found.',
   };
 
   if (type[0] === 'text/xml') {
     let responseXML = '<response>';
-    responseXML = `${responseXML} <header>${responseObj.header}</header>`;
+    responseXML = `${responseXML} <id>${responseObj.id}</id>`;
     responseXML = `${responseXML} <message>${responseObj.message}</message>`;
     responseXML = `${responseXML} </response>`;
     return respond(request, response, 404, type, responseXML);

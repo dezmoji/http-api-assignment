@@ -3,7 +3,7 @@
 
 <head>
     <title>Our simple HTTP server</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
     <script type="text/babel">
@@ -16,11 +16,11 @@
             const p = document.createElement('p'); 
             if(type === 'application/json') {
                 const obj = JSON.parse(xhr.response);
-                h1.textContent = `${obj.header}`;
+                h1.textContent = xhr.statusText;
                 p.textContent = `Message: ${obj.message}`;
             } 
             else if (type === 'text/xml') { 
-                h1.textContent = xhr.responseXML.querySelector('header').textContent;
+                h1.textContent = xhr.statusText;
                 p.textContent = 'Message: ' + xhr.responseXML.querySelector('message').textContent;
             }
             content.appendChild(h1); 
