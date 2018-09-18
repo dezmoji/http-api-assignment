@@ -18,11 +18,14 @@
                 const obj = JSON.parse(xhr.response);
                 h1.textContent = xhr.statusText;
                 p.textContent = `Message: ${obj.message}`;
+                console.log(obj);
             } 
             else if (type === 'text/xml') { 
                 h1.textContent = xhr.statusText;
                 p.textContent = 'Message: ' + xhr.responseXML.querySelector('message').textContent;
+                console.log(xhr.responseXML);
             }
+            content.innerHTML = ''
             content.appendChild(h1); 
             content.appendChild(p); 
         };
